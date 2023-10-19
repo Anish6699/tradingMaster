@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:optional_master/view/home_screen.dart';
-import 'package:optional_master/view/login_screen.dart';
+import 'package:optional_master/view/onboarding/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

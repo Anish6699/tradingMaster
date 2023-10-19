@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import '../utils/colors.dart';
+import 'package:get/get.dart';
+import 'package:optional_master/view/onboarding/login_with_number.dart';
+import 'package:optional_master/view/onboarding/sign_up_screen.dart';
+import '../../utils/colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -23,11 +26,10 @@ class _LoginScreenState extends State<LoginScreen> {
             height: MediaQuery.of(context).size.height * 0.25,
             // color: Colors.amberAccent,
             child: const Center(
-              child: Text(
-                'Trading\nMaster',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-              )
-            ),
+                child: Text(
+              'Trading\nMaster',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            )),
           ),
           Stack(
             children: [
@@ -64,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             filled: true,
                             labelText: 'Email',
                             labelStyle:
-                            const TextStyle(color: primaryBlackTextColor),
+                                const TextStyle(color: primaryBlackTextColor),
                             contentPadding: const EdgeInsets.all(15),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8.0),
@@ -91,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             filled: true,
                             labelText: 'password',
                             labelStyle:
-                            const TextStyle(color: primaryBlackTextColor),
+                                const TextStyle(color: primaryBlackTextColor),
                             contentPadding: const EdgeInsets.all(15),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8.0),
@@ -122,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                               foregroundColor:
-                              MaterialStatePropertyAll(Colors.white),
+                                  MaterialStatePropertyAll(Colors.white),
                               backgroundColor: MaterialStatePropertyAll(
                                 primaryGreenColor,
                               ),
@@ -180,8 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  foregroundColor:
-                  MaterialStatePropertyAll(Colors.white),
+                  foregroundColor: MaterialStatePropertyAll(Colors.white),
                   backgroundColor: MaterialStatePropertyAll(
                     primaryGreenColor,
                   ),
@@ -189,9 +190,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     EdgeInsets.symmetric(vertical: 16),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => const LoginScreen2());
+                },
                 child: const Text(
-                  "Login With Email",
+                  "Login With Number",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
@@ -215,8 +218,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  foregroundColor:
-                  MaterialStatePropertyAll(Colors.white),
+                  foregroundColor: MaterialStatePropertyAll(Colors.white),
                   backgroundColor: MaterialStatePropertyAll(
                     primaryGreenColor,
                   ),
@@ -224,7 +226,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     EdgeInsets.symmetric(vertical: 16),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => const SignUpScreen());
+                },
                 child: const Text(
                   "Sign Up",
                   style: TextStyle(
