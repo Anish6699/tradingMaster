@@ -2,10 +2,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:optional_master/view/home_screen.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
 import '../../utils/colors.dart';
-import 'login_screen.dart';
 
 class OtpVerification extends StatefulWidget {
   final phoneNumber;
@@ -180,7 +180,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                   onPressed: otp.length != 6
                       ? null
                       : () async {
-                          // Get.offAll(() => const Register());
+                          Get.offAll(() => const HomeScreen());
                           {
                             // showDialog(
                             //   barrierDismissible: false,

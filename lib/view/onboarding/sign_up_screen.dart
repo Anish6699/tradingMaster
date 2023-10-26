@@ -34,229 +34,219 @@ class _SignUpScreenState extends State<SignUpScreen> {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
             )),
           ),
-          Stack(
-            children: [
-              Container(
-                padding: const EdgeInsets.only(
-                  left: 20,
-                  right: 20,
-                  top: 40,
-                  bottom: 30,
-                ),
-                margin: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(16),
-                  ),
-                  border: Border.all(
-                    color: const Color.fromRGBO(0, 0, 0, 0.4),
-                  ),
-                ),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.symmetric(vertical: 15),
-                        child: TextFormField(
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          controller: firstNameController,
-                          // keyboardType: TextInputType.number,
-                          style: const TextStyle(color: primaryBlackTextColor),
-                          decoration: InputDecoration(
-                            fillColor: Colors.white,
-                            filled: true,
-                            labelText: 'First Name',
-                            labelStyle:
-                                const TextStyle(color: primaryBlackTextColor),
-                            contentPadding: const EdgeInsets.all(15),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              borderSide: const BorderSide(
-                                  color: primaryBlackBorderColor),
-                            ),
-                          ),
-                          onSaved: (newValue) {
-                            setState(() {
-                              firstNameController.text = newValue!;
-                            });
-                          },
+          const Center(
+            child: Text(
+              'Create New Account',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.03,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 15),
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: firstNameController,
+                      // keyboardType: TextInputType.number,
+                      style: const TextStyle(color: primaryBlackTextColor),
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        filled: true,
+                        labelText: 'First Name',
+                        labelStyle:
+                            const TextStyle(color: primaryBlackTextColor),
+                        contentPadding: const EdgeInsets.all(15),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide:
+                              const BorderSide(color: primaryBlackBorderColor),
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(vertical: 15),
-                        child: TextFormField(
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          controller: lastNameController,
-                          // keyboardType: TextInputType.number,
-                          style: const TextStyle(color: primaryBlackTextColor),
-                          decoration: InputDecoration(
-                            fillColor: Colors.white,
-                            filled: true,
-                            labelText: 'Last Name',
-                            labelStyle:
-                                const TextStyle(color: primaryBlackTextColor),
-                            contentPadding: const EdgeInsets.all(15),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              borderSide: const BorderSide(
-                                  color: primaryBlackBorderColor),
-                            ),
-                          ),
-                          onSaved: (newValue) {
-                            setState(() {
-                              lastNameController.text = newValue!;
-                            });
-                          },
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(vertical: 15),
-                        child: TextFormField(
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          controller: numberController,
-                          keyboardType: TextInputType.number,
-                          style: const TextStyle(color: primaryBlackTextColor),
-                          decoration: InputDecoration(
-                            fillColor: Colors.white,
-                            filled: true,
-                            labelText: 'Number',
-                            labelStyle:
-                                const TextStyle(color: primaryBlackTextColor),
-                            contentPadding: const EdgeInsets.all(15),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              borderSide: const BorderSide(
-                                  color: primaryBlackBorderColor),
-                            ),
-                          ),
-                          onSaved: (newValue) {
-                            setState(() {
-                              numberController.text = newValue!;
-                            });
-                          },
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(vertical: 15),
-                        child: TextFormField(
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          controller: emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          style: const TextStyle(color: primaryBlackTextColor),
-                          decoration: InputDecoration(
-                            fillColor: Colors.white,
-                            filled: true,
-                            labelText: 'Email',
-                            labelStyle:
-                                const TextStyle(color: primaryBlackTextColor),
-                            contentPadding: const EdgeInsets.all(15),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              borderSide: const BorderSide(
-                                  color: primaryBlackBorderColor),
-                            ),
-                          ),
-                          onSaved: (newValue) {
-                            setState(() {
-                              emailController.text = newValue!;
-                            });
-                          },
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(vertical: 15),
-                        child: TextFormField(
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          controller: passwordController,
-                          // keyboardType: TextInputType.number,
-                          style: const TextStyle(color: primaryBlackTextColor),
-                          decoration: InputDecoration(
-                            fillColor: Colors.white,
-                            filled: true,
-                            labelText: 'password',
-                            labelStyle:
-                                const TextStyle(color: primaryBlackTextColor),
-                            contentPadding: const EdgeInsets.all(15),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              borderSide: const BorderSide(
-                                  color: primaryBlackBorderColor),
-                            ),
-                          ),
-                          onSaved: (newValue) {
-                            setState(() {
-                              passwordController.text = newValue!;
-                            });
-                          },
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.025,
-                      ),
-                      Center(
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          child: OutlinedButton(
-                            style: const ButtonStyle(
-                              shape: MaterialStatePropertyAll(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(100),
-                                  ),
-                                ),
-                              ),
-                              foregroundColor:
-                                  MaterialStatePropertyAll(Colors.white),
-                              backgroundColor: MaterialStatePropertyAll(
-                                primaryGreenColor,
-                              ),
-                              padding: MaterialStatePropertyAll(
-                                EdgeInsets.symmetric(vertical: 16),
-                              ),
-                            ),
-                            onPressed: () {
-                              Get.to(() => OtpVerification(
-                                    phoneNumber: numberController.text,
-                                  ));
-                            },
-                            child: const Text(
-                              "Sign Up",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: MediaQuery.of(context).size.width * 0.4,
-                child: Container(
-                  padding: const EdgeInsets.only(
-                    bottom: 10,
-                    right: 10,
-                    left: 10,
-                  ),
-                  color: Colors.white,
-                  child: const Text(
-                    "SIGN UP",
-                    style: TextStyle(
-                      fontSize: 21,
-                      fontWeight: FontWeight.w500,
+                      onSaved: (newValue) {
+                        setState(() {
+                          firstNameController.text = newValue!;
+                        });
+                      },
                     ),
                   ),
-                ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 15),
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: lastNameController,
+                      // keyboardType: TextInputType.number,
+                      style: const TextStyle(color: primaryBlackTextColor),
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        filled: true,
+                        labelText: 'Last Name',
+                        labelStyle:
+                            const TextStyle(color: primaryBlackTextColor),
+                        contentPadding: const EdgeInsets.all(15),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide:
+                              const BorderSide(color: primaryBlackBorderColor),
+                        ),
+                      ),
+                      onSaved: (newValue) {
+                        setState(() {
+                          lastNameController.text = newValue!;
+                        });
+                      },
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 15),
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: numberController,
+                      keyboardType: TextInputType.number,
+                      style: const TextStyle(color: primaryBlackTextColor),
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        filled: true,
+                        labelText: 'Number',
+                        labelStyle:
+                            const TextStyle(color: primaryBlackTextColor),
+                        contentPadding: const EdgeInsets.all(15),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide:
+                              const BorderSide(color: primaryBlackBorderColor),
+                        ),
+                      ),
+                      onSaved: (newValue) {
+                        setState(() {
+                          numberController.text = newValue!;
+                        });
+                      },
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 15),
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      style: const TextStyle(color: primaryBlackTextColor),
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        filled: true,
+                        labelText: 'Email',
+                        labelStyle:
+                            const TextStyle(color: primaryBlackTextColor),
+                        contentPadding: const EdgeInsets.all(15),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide:
+                              const BorderSide(color: primaryBlackBorderColor),
+                        ),
+                      ),
+                      onSaved: (newValue) {
+                        setState(() {
+                          emailController.text = newValue!;
+                        });
+                      },
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 15),
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: passwordController,
+                      // keyboardType: TextInputType.number,
+                      style: const TextStyle(color: primaryBlackTextColor),
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        filled: true,
+                        labelText: 'Password',
+                        labelStyle:
+                            const TextStyle(color: primaryBlackTextColor),
+                        contentPadding: const EdgeInsets.all(15),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide:
+                              const BorderSide(color: primaryBlackBorderColor),
+                        ),
+                      ),
+                      onSaved: (newValue) {
+                        setState(() {
+                          passwordController.text = newValue!;
+                        });
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.025,
+                  ),
+                  Center(
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      child: OutlinedButton(
+                        style: const ButtonStyle(
+                          shape: MaterialStatePropertyAll(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(100),
+                              ),
+                            ),
+                          ),
+                          foregroundColor:
+                              MaterialStatePropertyAll(Colors.white),
+                          backgroundColor: MaterialStatePropertyAll(
+                            primaryGreenColor,
+                          ),
+                          padding: MaterialStatePropertyAll(
+                            EdgeInsets.symmetric(vertical: 12),
+                          ),
+                        ),
+                        onPressed: () {
+                          Get.to(() => OtpVerification(
+                                phoneNumber: numberController.text,
+                              ));
+                        },
+                        child: const Text(
+                          "Sign Up",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.05,
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: TextButton(
+                onPressed: () {
+                  Get.to(() => const LoginScreen());
+                },
+                child: const Text(
+                  "Sign In",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
           ),
           // Center(
           //   child: SizedBox(
@@ -275,58 +265,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
           //           primaryGreenColor,
           //         ),
           //         padding: MaterialStatePropertyAll(
-          //           EdgeInsets.symmetric(vertical: 16),
+          //           EdgeInsets.symmetric(vertical: 12),
           //         ),
           //       ),
           //       onPressed: () {
-          //         Get.to(() => const LoginScreen2());
+          //         Get.to(() => const LoginScreen());
           //       },
           //       child: const Text(
-          //         "Login With Number",
+          //         "Sign In",
           //         style: TextStyle(
-          //           fontSize: 20,
+          //           fontSize: 16,
           //           fontWeight: FontWeight.w500,
           //         ),
           //       ),
           //     ),
           //   ),
           // ),
-          // SizedBox(
-          //   height: MediaQuery.of(context).size.height * 0.015,
-          // ),
-          Center(
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: OutlinedButton(
-                style: const ButtonStyle(
-                  shape: MaterialStatePropertyAll(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(100),
-                      ),
-                    ),
-                  ),
-                  foregroundColor: MaterialStatePropertyAll(Colors.white),
-                  backgroundColor: MaterialStatePropertyAll(
-                    primaryGreenColor,
-                  ),
-                  padding: MaterialStatePropertyAll(
-                    EdgeInsets.symmetric(vertical: 16),
-                  ),
-                ),
-                onPressed: () {
-                  Get.to(() => const LoginScreen());
-                },
-                child: const Text(
-                  "Sign In",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-            ),
-          ),
         ],
       ),
     );
