@@ -9,9 +9,6 @@ class ServicePage extends StatefulWidget {
 }
 
 class _ServicePageState extends State<ServicePage> {
-  String? recommendations;
-  String? range;
-  String? duration;
 
   @override
   Widget build(BuildContext context) {
@@ -27,122 +24,6 @@ class _ServicePageState extends State<ServicePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: DropdownButtonFormField(
-                decoration: const InputDecoration(
-                    labelText: "Recommendations",
-                    enabledBorder: OutlineInputBorder(
-                      //<-- SEE HERE
-                      borderSide: BorderSide(color: Colors.green, width: 1),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      //<-- SEE HERE
-                      borderSide: BorderSide(color: Colors.green, width: 1),
-                    ),
-                    contentPadding: EdgeInsets.all(8)),
-                dropdownColor: Colors.white,
-                value: recommendations,
-                onChanged: (String? newValue) {
-                  setState(() {
-                    recommendations = newValue!;
-                  });
-                },
-                items: <String>[
-                  'Buy',
-                  'Sell',
-                  'Short',
-                  'Long',
-                ].map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(
-                      value,
-                      style: const TextStyle(fontSize: 14),
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: DropdownButtonFormField(
-                decoration: const InputDecoration(
-                    labelText: "Range",
-                    enabledBorder: OutlineInputBorder(
-                      //<-- SEE HERE
-                      borderSide: BorderSide(color: Colors.green, width: 1),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      //<-- SEE HERE
-                      borderSide: BorderSide(color: Colors.green, width: 1),
-                    ),
-                    contentPadding: EdgeInsets.all(8)),
-                dropdownColor: Colors.white,
-                value: range,
-                onChanged: (String? newValue) {
-                  setState(() {
-                    range = newValue!;
-                  });
-                },
-                items: <String>[
-                  'Upper',
-                  'Lower',
-                ].map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(
-                      value,
-                      style: const TextStyle(fontSize: 14),
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: DropdownButtonFormField(
-                decoration: const InputDecoration(
-                    labelText: "Duration",
-                    enabledBorder: OutlineInputBorder(
-                      //<-- SEE HERE
-                      borderSide: BorderSide(color: Colors.green, width: 1),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      //<-- SEE HERE
-                      borderSide: BorderSide(color: Colors.green, width: 1),
-                    ),
-                    contentPadding: EdgeInsets.all(8)),
-                dropdownColor: Colors.white,
-                value: duration,
-                onChanged: (String? newValue) {
-                  setState(() {
-                    duration = newValue!;
-                  });
-                },
-                items: <String>[
-                  'Intra Day',
-                  'Intra BIST',
-                  'Intra STBT',
-                  '223 day',
-                  'Intra Expiry',
-                  'Expiry',
-                  'Lower',
-                ].map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(
-                      value,
-                      style: const TextStyle(fontSize: 14),
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
-            const Divider(
-              color: Colors.grey,
-              thickness: 1,
-            ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Card(
