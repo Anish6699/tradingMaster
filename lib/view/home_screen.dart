@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:optional_master/utils/colors.dart';
 import 'package:optional_master/view/onboarding/login_screen.dart';
 import 'package:optional_master/view/service_page.dart';
+import 'package:optional_master/widget/drawerWidget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -23,77 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
           style: TextStyle(fontSize: 25),
         ),
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: const EdgeInsets.all(0),
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.green,
-              ), //BoxDecoration
-              child: UserAccountsDrawerHeader(
-                decoration: BoxDecoration(color: Colors.green),
-                accountName: Text(
-                  "Mangesh Ghodke",
-                  style: TextStyle(fontSize: 20),
-                ),
-                accountEmail: Text("mangesh@gmail.com"),
-                currentAccountPictureSize: Size.square(50), //circleAvatar
-              ), //UserAccountDrawerHeader
-            ), //DrawerHeader
-            ListTile(
-              leading: const Icon(Icons.home_repair_service),
-              title: const Text(
-                ' My Services',
-                style: TextStyle(fontSize: 20),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.book),
-              title: const Text(
-                ' Performance ',
-                style: TextStyle(fontSize: 20),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.workspace_premium),
-              title: const Text(
-                ' Offers ',
-                style: TextStyle(fontSize: 20),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.person),
-              title: const Text(
-                ' Profile ',
-                style: TextStyle(fontSize: 20),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.logout),
-              title: const Text(
-                ' Logout ',
-                style: TextStyle(fontSize: 20),
-              ),
-              onTap: () {
-                Get.to(() => const LoginScreen());
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: DrawerWidget(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
@@ -147,7 +78,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () {}, child: const Text('Buy')),
                 ),
               ),
-
 
               // Padding(
               //   padding: const EdgeInsets.all(16.0),
