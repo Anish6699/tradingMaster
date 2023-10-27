@@ -2,46 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:optional_master/view/onboarding/login_screen.dart';
 import 'package:optional_master/view/onboarding/otp_verification.dart';
+import 'package:optional_master/widget/drawerWidget.dart';
 import '../../utils/colors.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController numberController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController adharController = TextEditingController();
+  TextEditingController panController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const DrawerWidget(),
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: primaryGreenColor,
+        title: const Text(
+          'Profile',
+          style: TextStyle(fontSize: 25),
+        ),
+      ),
       body: ListView(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.15,
+            // height: MediaQuery.of(context).size.height * 0.15,
             // color: Colors.amberAccent,
-            child:  Center(
-                child: Image.asset(
-                  'assets/images/logo.png',
-                  fit: BoxFit.contain,
-                ),),
-          ),
-          const Center(
-            child: Text(
-              'Create New Account',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+            child: Center(
+              child: Image.asset(
+                'assets/images/logo.png',
+                fit: BoxFit.contain,
+              ),
             ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -185,6 +189,60 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       },
                     ),
                   ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 15),
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: adharController,
+                      // keyboardType: TextInputType.number,
+                      style: const TextStyle(color: primaryBlackTextColor),
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        filled: true,
+                        labelText: 'Aadhar Card',
+                        labelStyle:
+                            const TextStyle(color: primaryBlackTextColor),
+                        contentPadding: const EdgeInsets.all(15),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide:
+                              const BorderSide(color: primaryBlackBorderColor),
+                        ),
+                      ),
+                      onSaved: (newValue) {
+                        setState(() {
+                          adharController.text = newValue!;
+                        });
+                      },
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 15),
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: panController,
+                      // keyboardType: TextInputType.number,
+                      style: const TextStyle(color: primaryBlackTextColor),
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        filled: true,
+                        labelText: 'Pancard',
+                        labelStyle:
+                            const TextStyle(color: primaryBlackTextColor),
+                        contentPadding: const EdgeInsets.all(15),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide:
+                              const BorderSide(color: primaryBlackBorderColor),
+                        ),
+                      ),
+                      onSaved: (newValue) {
+                        setState(() {
+                          panController.text = newValue!;
+                        });
+                      },
+                    ),
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.025,
                   ),
@@ -210,12 +268,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                         onPressed: () {
-                          Get.to(() => OtpVerification(
-                                phoneNumber: numberController.text,
-                              ));
+                          // Get.to(() => OtpVerification(
+                          //   phoneNumber: numberController.text,
+                          // ));
                         },
                         child: const Text(
-                          "Sign Up",
+                          "Reset Password",
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w500,
@@ -231,56 +289,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.05,
           ),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: TextButton(
-                onPressed: () {
-                  Get.to(() => const LoginScreen());
-                },
-                child: const Text(
-                  "Sign In",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          // Center(
-          //   child: SizedBox(
-          //     width: MediaQuery.of(context).size.width * 0.8,
-          //     child: OutlinedButton(
-          //       style: const ButtonStyle(
-          //         shape: MaterialStatePropertyAll(
-          //           RoundedRectangleBorder(
-          //             borderRadius: BorderRadius.all(
-          //               Radius.circular(100),
-          //             ),
-          //           ),
-          //         ),
-          //         foregroundColor: MaterialStatePropertyAll(Colors.white),
-          //         backgroundColor: MaterialStatePropertyAll(
-          //           primaryGreenColor,
-          //         ),
-          //         padding: MaterialStatePropertyAll(
-          //           EdgeInsets.symmetric(vertical: 12),
-          //         ),
-          //       ),
-          //       onPressed: () {
-          //         Get.to(() => const LoginScreen());
-          //       },
-          //       child: const Text(
-          //         "Sign In",
-          //         style: TextStyle(
-          //           fontSize: 16,
-          //           fontWeight: FontWeight.w500,
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );

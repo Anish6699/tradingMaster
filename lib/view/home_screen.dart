@@ -17,14 +17,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: primaryGreenColor,
-        title: const Text(
-          'Trading Master',
-          style: TextStyle(fontSize: 25),
-        ),
+        // centerTitle: true,
+        backgroundColor: Colors.grey[400],
+        title:  Image.asset(
+          'assets/images/logo.png',
+          fit: BoxFit.cover,
+        )
       ),
-      drawer: DrawerWidget(),
+      drawer: const DrawerWidget(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),

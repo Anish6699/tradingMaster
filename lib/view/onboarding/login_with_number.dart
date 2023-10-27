@@ -24,11 +24,11 @@ class _LoginScreen2State extends State<LoginScreen2> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.25,
             // color: Colors.amberAccent,
-            child: const Center(
-                child: Text(
-              'Trading\nMaster',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-            )),
+            child:  Center(
+                child: Image.asset(
+                  'assets/images/logo.png',
+                  fit: BoxFit.contain,
+                ),),
           ),
           const Center(
             child: Text(

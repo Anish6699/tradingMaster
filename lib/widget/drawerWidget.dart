@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:optional_master/view/home_screen.dart';
 import 'package:optional_master/view/onboarding/login_screen.dart';
+import 'package:optional_master/view/onboarding/profile.dart';
 import 'package:optional_master/view/performance.dart';
 import 'package:optional_master/view/services.dart';
 
@@ -37,7 +38,7 @@ class DrawerWidget extends StatelessWidget {
               style: TextStyle(fontSize: 20),
             ),
             onTap: () {
-              Get.to(() => HomeScreen());
+              Get.to(() => const HomeScreen());
             },
           ),
           ListTile(
@@ -47,7 +48,7 @@ class DrawerWidget extends StatelessWidget {
               style: TextStyle(fontSize: 20),
             ),
             onTap: () {
-              Get.to(() => Services());
+              Get.to(() => const Services());
             },
           ),
           ListTile(
@@ -57,7 +58,7 @@ class DrawerWidget extends StatelessWidget {
               style: TextStyle(fontSize: 20),
             ),
             onTap: () {
-              Get.to(() => Performance());
+              Get.to(() => const Performance());
             },
           ),
           ListTile(
@@ -77,7 +78,8 @@ class DrawerWidget extends StatelessWidget {
               style: TextStyle(fontSize: 20),
             ),
             onTap: () {
-              Navigator.pop(context);
+              Get.to(() => const ProfileScreen());
+              // Navigator.pop(context);
             },
           ),
           ListTile(

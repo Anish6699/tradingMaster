@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:optional_master/view/home_screen.dart';
 import 'package:optional_master/view/onboarding/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -90,12 +89,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-          child: Text(
-        'Trading\nMaster',
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+          child: Image.asset(
+        'assets/images/logo.png',
+            fit: BoxFit.cover,
       )),
     );
   }
