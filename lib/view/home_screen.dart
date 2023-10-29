@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:optional_master/controllers/other_controllers.dart';
-import 'package:optional_master/utils/colors.dart';
 import 'package:optional_master/view/buy_services.dart';
-import 'package:optional_master/view/onboarding/login_screen.dart';
 import 'package:optional_master/view/service_page.dart';
 import 'package:optional_master/widget/drawerWidget.dart';
 

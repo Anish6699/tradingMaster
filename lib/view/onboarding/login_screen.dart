@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:optional_master/controllers/onboarding_controllers.dart';
 import 'package:optional_master/view/home_screen.dart';
 import 'package:optional_master/view/onboarding/login_with_number.dart';
-import 'package:optional_master/view/onboarding/sign_up_screen.dart';
 import '../../utils/colors.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -28,9 +27,12 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.28,
             // color: Colors.amberAccent,
-            child: Image.asset(
-              'assets/images/logo.png',
-              fit: BoxFit.contain,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Image.asset(
+                'assets/images/logo.png',
+                fit: BoxFit.contain,
+              ),
             ),
           ),
           const Center(

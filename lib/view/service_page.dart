@@ -13,7 +13,7 @@ class _ServicePageState extends State<ServicePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: DrawerWidget(),
+      drawer: const DrawerWidget(),
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: primaryGreenColor,

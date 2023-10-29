@@ -24,7 +24,7 @@ class _ServicePageState extends State<BuyService> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: DrawerWidget(),
+      drawer: const DrawerWidget(),
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: primaryGreenColor,
@@ -63,7 +63,7 @@ class _ServicePageState extends State<BuyService> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
                                       children: [
-                                        Text(
+                                        const Text(
                                           'Service Type  :  ',
                                           style: TextStyle(
                                               fontSize: 12,
@@ -80,7 +80,7 @@ class _ServicePageState extends State<BuyService> {
                                                 : widget.serviceid == '2'
                                                     ? 'HNI'
                                                     : 'Special',
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontSize: 12,
                                                 color: Colors.black54),
                                           ),
@@ -92,7 +92,7 @@ class _ServicePageState extends State<BuyService> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
                                       children: [
-                                        Text(
+                                        const Text(
                                           'Package Name  :  ',
                                           style: TextStyle(
                                               fontSize: 12,
@@ -105,7 +105,7 @@ class _ServicePageState extends State<BuyService> {
                                               0.2,
                                           child: Text(
                                             widget.data[index]['package_name'],
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontSize: 12,
                                                 color: Colors.black54),
                                           ),
@@ -117,7 +117,7 @@ class _ServicePageState extends State<BuyService> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
                                       children: [
-                                        Text(
+                                        const Text(
                                           'Price  :  ',
                                           style: TextStyle(
                                               fontSize: 12,
@@ -130,7 +130,7 @@ class _ServicePageState extends State<BuyService> {
                                               0.2,
                                           child: Text(
                                             widget.data[index]['price'],
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontSize: 12,
                                                 color: Colors.black54),
                                           ),

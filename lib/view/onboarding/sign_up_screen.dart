@@ -31,9 +31,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
             height: MediaQuery.of(context).size.height * 0.15,
             // color: Colors.amberAccent,
             child: Center(
-              child: Image.asset(
-                'assets/images/logo.png',
-                fit: BoxFit.contain,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Image.asset(
+                  'assets/images/logo.png',
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
           ),

@@ -4,7 +4,7 @@ import 'package:optional_master/view/home_screen.dart';
 import 'package:optional_master/view/onboarding/login_screen.dart';
 import 'package:optional_master/view/onboarding/profile.dart';
 import 'package:optional_master/view/performance.dart';
-import 'package:optional_master/view/services.dart';
+import 'package:optional_master/view/my_services.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({
@@ -22,6 +22,11 @@ class DrawerWidget extends StatelessWidget {
               color: Colors.green,
             ), //BoxDecoration
             child: UserAccountsDrawerHeader(
+              currentAccountPicture: CircleAvatar(
+                backgroundColor:
+                Colors.white,
+                child: Icon(Icons.person,size: 20,),
+              ),
               decoration: BoxDecoration(color: Colors.green),
               accountName: Text(
                 "Mangesh Ghodke",

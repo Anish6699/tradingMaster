@@ -13,12 +13,12 @@ class _ServicesState extends State<Services> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: DrawerWidget(),
+      drawer: const DrawerWidget(),
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: primaryGreenColor,
         title: const Text(
-          'Services',
+          'My Services',
           style: TextStyle(fontSize: 25),
         ),
       ),
@@ -56,10 +56,10 @@ class _ServicesState extends State<Services> {
                                     fontSize: 12, color: Colors.black54),
                               ),
                               SizedBox(
-                                width: 20,
+                                width: 53,
                               ),
                               Text(
-                                'Recomendation  :  ',
+                                'Recommendation  :  ',
                                 style: TextStyle(
                                     fontSize: 12, fontWeight: FontWeight.bold),
                               ),
@@ -166,23 +166,42 @@ class _ServicesState extends State<Services> {
                                 ),
                               ),
                             ),
+                            Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
+                              color: Colors.grey[200],
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16.0, vertical: 8),
+                                child: Column(
+                                  children: const [
+                                    Text('Stop Loss'),
+                                    Text(
+                                      '400',
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
-                              Text(
-                                'Dusration  :  ',
+                              const Text(
+                                'Duration  :  ',
                                 style: TextStyle(
                                     fontSize: 12, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.6,
-                                child: Text(
+                                child: const Text(
                                   'Intra BIST',
                                   style: TextStyle(
                                       fontSize: 12, color: Colors.black54),
