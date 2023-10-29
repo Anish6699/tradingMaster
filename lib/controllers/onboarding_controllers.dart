@@ -1,8 +1,7 @@
 import 'dart:convert';
-
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:optional_master/utils/configs.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingControllers {
   Future<Map> registerApi(
@@ -19,6 +18,8 @@ class OnboardingControllers {
       'email': email,
       'mobile': mobile,
       'password': password,
+      'company_id': '2',
+      'role_id' : '3'
     };
     var body = Uri(queryParameters: formData).query;
 
@@ -30,18 +31,10 @@ class OnboardingControllers {
     print('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
     Map a = {};
     a = json.decode(response.body) as Map;
-
-    // {"response":1,"message":"success",
-    // "data":{"user_id":"12","company_id":"0","role_id":"0",
-    // "fullname":"Anish Gunjal","email":"anishgunjal.43@gmail.com"}}
-    if (response.statusCode == 200) {
-      print('Request successful');
-    } else {
-      print('Request failed with status: ${response.statusCode}');
-    }
-    print('aaaaaaaaaaaaaaaaaa');
-    print(a);
-
+    var prefs = await SharedPreferences.getInstance();
+    var userId = a['data']['user_id'];
+    print(userId);
+    prefs.setString('userId', userId);
     //  {"response":1,"message":"success","data":{"user_id":"12"}}
 
     return a;
@@ -71,7 +64,10 @@ class OnboardingControllers {
     // {"response":1,"message":"success",
     // "data":{"user_id":"12","company_id":"0","role_id":"0",
     // "fullname":"Anish Gunjal","email":"anishgunjal.43@gmail.com"}}
-
+    var prefs = await SharedPreferences.getInstance();
+    var userId = a['data']['user_id'];
+    print(userId);
+    prefs.setString('userId', userId);
     print('aaaaaaaaaaaaaaaaaa');
     print(a);
     return a;

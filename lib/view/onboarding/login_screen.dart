@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:optional_master/controllers/onboarding_controllers.dart';
 import 'package:optional_master/view/home_screen.dart';
 import 'package:optional_master/view/onboarding/login_with_number.dart';
+import 'package:optional_master/view/onboarding/sign_up_screen.dart';
 import '../../utils/colors.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -194,6 +195,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                     print(snapshot.data);
                                     Future.delayed(const Duration(seconds: 2),
                                         () {
+
+
                                       Get.offAll(() => const LoginScreen());
                                     });
 
@@ -250,27 +253,27 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.15,
           ),
-          Center(
-            child: TextButton(
-              onPressed: () {
-                Get.to(() => const LoginScreen2());
-              },
-              child: const Text(
-                "Login With Number",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ),
+          // Center(
+          //   child: TextButton(
+          //     onPressed: () {
+          //       Get.to(() => const LoginScreen2());
+          //     },
+          //     child: const Text(
+          //       "Login With Number",
+          //       style: TextStyle(
+          //         fontSize: 20,
+          //         fontWeight: FontWeight.w500,
+          //       ),
+          //     ),
+          //   ),
+          // ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.015,
           ),
           Center(
             child: TextButton(
               onPressed: () {
-                Get.to(() => const LoginScreen2());
+                Get.to(() => const SignUpScreen());
               },
               child: const Text(
                 "Sign Up",

@@ -19,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List service1 = [];
   List service2 = [];
   List service3 = [];
+
   @override
   void initState() {
     getData();
@@ -75,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListTile(
+                  contentPadding: const EdgeInsets.all(20),
                   onTap: () {
                     Get.to(() => const ServicePage());
                   },
@@ -95,6 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListTile(
+                  contentPadding: const EdgeInsets.all(20),
                   onTap: () {
                     Get.to(() => const ServicePage());
                   },
@@ -115,6 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListTile(
+                  contentPadding: const EdgeInsets.all(20),
                   onTap: () {
                     Get.to(() => const ServicePage());
                   },

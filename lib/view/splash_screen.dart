@@ -2,7 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:optional_master/view/home_screen.dart';
 import 'package:optional_master/view/onboarding/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -20,9 +22,13 @@ class _SplashScreenState extends State<SplashScreen> {
 
   initial() async {
     Timer(const Duration(seconds: 2), () async {
+      var prefs = await SharedPreferences.getInstance();
       bool result = await InternetConnectionChecker().hasConnection;
       if (result == true) {
-        Get.offAll(() => const LoginScreen());
+        var userId = prefs.getString('userId');
+        userId == null ?
+        Get.offAll(() => const LoginScreen()):
+        Get.offAll(() => const HomeScreen());
       } else {
         // show an popup with option to refresh page
         // ignore: use_build_context_synchronously
@@ -92,10 +98,13 @@ class _SplashScreenState extends State<SplashScreen> {
     return  Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-          child: Image.asset(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Image.asset(
         'assets/images/logo.png',
-            fit: BoxFit.cover,
-      )),
+              fit: BoxFit.cover,
+      ),
+          )),
     );
   }
 }

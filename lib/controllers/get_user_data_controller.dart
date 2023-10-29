@@ -1,10 +1,13 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:optional_master/utils/configs.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class AllControllers {
-  Future<List> getAllPackages() async {
-    var url = Uri.parse('${serverUrl}read_api/tbl_packages');
+class UserDataController {
+  Future<List> getUserData() async {
+    var prefs = await SharedPreferences.getInstance();
+    var userId = prefs.getString('userId');
+    var url = Uri.parse('${serverUrl}readwhere_api/tbl_users/user_id/$userId');
 
     final response = await http.get(
       url,
@@ -15,7 +18,7 @@ class AllControllers {
     a = json.decode(response.body) as Map;
     data = a['data'];
 
-    print('all packagesssssssssss');
+    print('user Data');
     print(data);
 
     return data;
