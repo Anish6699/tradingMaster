@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:optional_master/utils/colors.dart';
+import 'package:optional_master/widget/drawerWidget.dart';
 
 class ServicePage extends StatefulWidget {
   const ServicePage({Key? key}) : super(key: key);
@@ -9,10 +10,10 @@ class ServicePage extends StatefulWidget {
 }
 
 class _ServicePageState extends State<ServicePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerWidget(),
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: primaryGreenColor,

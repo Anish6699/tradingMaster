@@ -5,14 +5,20 @@ import 'package:http/http.dart' as http;
 import 'package:optional_master/utils/configs.dart';
 
 class OnboardingControllers {
-  registerApi() async {
+  registerApi(
+    String fname,
+    String email,
+    String lname,
+    String mobile,
+    String password,
+  ) async {
     var url = Uri.parse('${serverUrl}register_api');
     Map<String, String> formData = {
-      'fname': 'Anish',
-      'lname': 'Gunjal',
-      'email': 'anishgunjal.43@gmail.com',
-      'mobile': '8668976697',
-      'password': 'Anish@123',
+      'fname': fname,
+      'lname': lname,
+      'email': email,
+      'mobile': mobile,
+      'password': password,
     };
     var body = Uri(queryParameters: formData).query;
 
@@ -45,11 +51,11 @@ class OnboardingControllers {
     return a;
   }
 
-  Future<Map> loginApi() async {
+  Future<Map> loginApi(String mobile, String password) async {
     var url = Uri.parse('${serverUrl}login_api');
     Map<String, String> formData = {
-      'mobile': '8668976697',
-      'password': 'Anish@123',
+      'mobile': mobile,
+      'password': password,
     };
     var body = Uri(queryParameters: formData).query;
 

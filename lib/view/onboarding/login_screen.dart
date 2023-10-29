@@ -223,7 +223,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                   );
                                 },
-                                future: onboardingControllers.loginApi(),
+                                future: onboardingControllers.loginApi(
+                                    emailController.text,
+                                    passwordController.text),
                               );
                             },
                           );

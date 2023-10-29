@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:optional_master/controllers/other_controllers.dart';
 import 'package:optional_master/utils/colors.dart';
+import 'package:optional_master/view/buy_services.dart';
 import 'package:optional_master/view/onboarding/login_screen.dart';
 import 'package:optional_master/view/service_page.dart';
 import 'package:optional_master/widget/drawerWidget.dart';
@@ -12,7 +14,46 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+AllControllers allControllers = AllControllers();
+
 class _HomeScreenState extends State<HomeScreen> {
+  List allData = [];
+  List service1 = [];
+  List service2 = [];
+  List service3 = [];
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  getData() async {
+    List a = await allControllers.getAllPackages();
+
+    for (int i = 0; i < a.length; i++) {
+      if (a[i]['company_id'].toString() == '1') {
+        allData.add(a[i]);
+      }
+    }
+
+    for (int i = 0; i < allData.length; i++) {
+      if (allData[i]['service_id'].toString() == '1') {
+        service1.add(allData[i]);
+      }
+      if (allData[i]['service_id'].toString() == '2') {
+        service2.add(allData[i]);
+      }
+      if (allData[i]['service_id'].toString() == '3') {
+        service3.add(allData[i]);
+      }
+    }
+
+    print('servicesssssssssss');
+    print(service1);
+    print(service2);
+    print(service3);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +87,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   leading: const Icon(Icons.home_repair_service_rounded),
                   title: const Text('Basic'),
                   trailing: ElevatedButton(
-                      onPressed: () {}, child: const Text('Buy')),
+                      onPressed: () {
+                        Get.to(
+                            () => BuyService(serviceid: '1', data: service1));
+                      },
+                      child: const Text('Buy')),
                 ),
               ),
               Padding(
@@ -62,7 +107,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   leading: const Icon(Icons.home_repair_service_rounded),
                   title: const Text('HNI'),
                   trailing: ElevatedButton(
-                      onPressed: () {}, child: const Text('Buy')),
+                      onPressed: () {
+                        Get.to(
+                            () => BuyService(serviceid: '2', data: service2));
+                      },
+                      child: const Text('Buy')),
                 ),
               ),
               Padding(
@@ -78,7 +127,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   leading: const Icon(Icons.home_repair_service_rounded),
                   title: const Text('Special'),
                   trailing: ElevatedButton(
-                      onPressed: () {}, child: const Text('Buy')),
+                      onPressed: () {
+                        Get.to(
+                            () => BuyService(serviceid: '3', data: service3));
+                      },
+                      child: const Text('Buy')),
                 ),
               ),
 

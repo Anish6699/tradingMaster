@@ -309,7 +309,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     ),
                                   );
                                 },
-                                future: onboardingControllers.registerApi(),
+                                future: onboardingControllers.registerApi(
+                                    firstNameController.text,
+                                    lastNameController.text,
+                                    emailController.text,
+                                    numberController.text,
+                                    passwordController.text),
                               );
                             },
                           );
