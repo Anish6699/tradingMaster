@@ -61,16 +61,16 @@ class DrawerWidget extends StatelessWidget {
               Get.to(() => const Performance());
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.workspace_premium),
-            title: const Text(
-              ' Offers ',
-              style: TextStyle(fontSize: 20),
-            ),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
+          // ListTile(
+          //   leading: const Icon(Icons.workspace_premium),
+          //   title: const Text(
+          //     ' Offers ',
+          //     style: TextStyle(fontSize: 20),
+          //   ),
+          //   onTap: () {
+          //     Navigator.pop(context);
+          //   },
+          // ),
           ListTile(
             leading: const Icon(Icons.person),
             title: const Text(

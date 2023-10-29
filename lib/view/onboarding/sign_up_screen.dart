@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:optional_master/controllers/onboarding_controllers.dart';
 import 'package:optional_master/view/onboarding/login_screen.dart';
 import 'package:optional_master/view/onboarding/otp_verification.dart';
 import '../../utils/colors.dart';
@@ -18,6 +19,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  OnboardingControllers onboardingControllers = OnboardingControllers();
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +30,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.15,
             // color: Colors.amberAccent,
-            child:  Center(
-                child: Image.asset(
-                  'assets/images/logo.png',
-                  fit: BoxFit.contain,
-                ),),
+            child: Center(
+              child: Image.asset(
+                'assets/images/logo.png',
+                fit: BoxFit.contain,
+              ),
+            ),
           ),
           const Center(
             child: Text(
@@ -210,9 +213,106 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                         onPressed: () {
-                          Get.to(() => OtpVerification(
-                                phoneNumber: numberController.text,
-                              ));
+                          // Get.to(() => OtpVerification(
+                          //       phoneNumber: numberController.text,
+                          //
+                          showDialog(
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (BuildContext context) {
+                              return FutureBuilder(
+                                builder: (
+                                  BuildContext context,
+                                  AsyncSnapshot<Map> snapshot,
+                                ) {
+                                  List<Widget> children;
+                                  if (snapshot.hasData) {
+                                    var data = snapshot.data;
+                                    print('dataaaaaaaaaaaaaaa');
+                                    print(data);
+                                    if (data!['message'].toString() ==
+                                        "success") {
+                                      Future.delayed(const Duration(seconds: 2),
+                                          () {
+                                        Get.offAll(() => const LoginScreen());
+                                      });
+
+                                      children = <Widget>[
+                                        const Icon(
+                                          Icons.check_circle_outline,
+                                          color: Colors.green,
+                                          size: 60,
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.only(top: 16),
+                                          child: Text(
+                                            'Signup Successfully',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ),
+                                        ),
+                                      ];
+                                    } else {
+                                      Future.delayed(const Duration(seconds: 2),
+                                          () {
+                                        Get.back();
+                                      });
+                                      children = <Widget>[
+                                        const Icon(
+                                          Icons.error_outline,
+                                          color: Colors.red,
+                                          size: 60,
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.only(top: 16),
+                                          child: Text(
+                                            'Failed to SignUp',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ),
+                                        ),
+                                      ];
+                                    }
+                                  } else {
+                                    print('snapshot.data');
+                                    print(snapshot.data);
+                                    Future.delayed(const Duration(seconds: 2),
+                                        () {
+                                      Get.offAll(() => const LoginScreen());
+                                    });
+
+                                    children = const <Widget>[
+                                      SizedBox(
+                                        width: 60,
+                                        height: 60,
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 16),
+                                        child: Text(
+                                          'Signing Up',
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                      )
+                                    ];
+                                  }
+                                  return AlertDialog(
+                                    content: SizedBox(
+                                      height: 150,
+                                      child: Center(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: children,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                future: onboardingControllers.registerApi(),
+                              );
+                            },
+                          );
                         },
                         child: const Text(
                           "Sign Up",

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:optional_master/controllers/onboarding_controllers.dart';
 import 'package:optional_master/view/home_screen.dart';
 import 'package:optional_master/view/onboarding/login_with_number.dart';
 import 'package:optional_master/view/onboarding/sign_up_screen.dart';
@@ -15,6 +16,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  OnboardingControllers onboardingControllers = OnboardingControllers();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -26,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.28,
             // color: Colors.amberAccent,
-            child:  Image.asset(
+            child: Image.asset(
               'assets/images/logo.png',
               fit: BoxFit.contain,
             ),
@@ -126,7 +128,106 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         onPressed: () {
-                          Get.offAll(() => const HomeScreen());
+                          // onboardingControllers.loginApi();
+
+                          showDialog(
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (BuildContext context) {
+                              return FutureBuilder(
+                                builder: (
+                                  BuildContext context,
+                                  AsyncSnapshot<Map> snapshot,
+                                ) {
+                                  List<Widget> children;
+                                  if (snapshot.hasData) {
+                                    var data = snapshot.data;
+                                    print('dataaaaaaaaaaaaaaa');
+                                    print(data);
+                                    if (data!['message'].toString() ==
+                                        "success") {
+                                      Future.delayed(const Duration(seconds: 2),
+                                          () {
+                                        Get.offAll(() => const HomeScreen());
+                                      });
+
+                                      children = <Widget>[
+                                        const Icon(
+                                          Icons.check_circle_outline,
+                                          color: Colors.green,
+                                          size: 60,
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.only(top: 16),
+                                          child: Text(
+                                            'Login Successfully',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ),
+                                        ),
+                                      ];
+                                    } else {
+                                      Future.delayed(const Duration(seconds: 2),
+                                          () {
+                                        Get.back();
+                                      });
+                                      children = <Widget>[
+                                        const Icon(
+                                          Icons.error_outline,
+                                          color: Colors.red,
+                                          size: 60,
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.only(top: 16),
+                                          child: Text(
+                                            'Failed to Login',
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ),
+                                        ),
+                                      ];
+                                    }
+                                  } else {
+                                    print('snapshot.data');
+                                    print(snapshot.data);
+                                    Future.delayed(const Duration(seconds: 2),
+                                        () {
+                                      Get.offAll(() => const LoginScreen());
+                                    });
+
+                                    children = const <Widget>[
+                                      SizedBox(
+                                        width: 60,
+                                        height: 60,
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 16),
+                                        child: Text(
+                                          'Logging in',
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                      )
+                                    ];
+                                  }
+                                  return AlertDialog(
+                                    content: SizedBox(
+                                      height: 150,
+                                      child: Center(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: children,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                future: onboardingControllers.loginApi(),
+                              );
+                            },
+                          );
+                          // Get.offAll(() => const HomeScreen());
                         },
                         child: const Text(
                           "Sign In",

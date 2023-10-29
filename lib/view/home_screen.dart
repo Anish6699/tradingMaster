@@ -17,13 +17,16 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // centerTitle: true,
-        backgroundColor: Colors.grey[400],
-        title:  Image.asset(
-          'assets/images/logo.png',
-          fit: BoxFit.cover,
-        )
-      ),
+          foregroundColor: Colors.black,
+          backgroundColor: Colors.white,
+          centerTitle: true,
+          title: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.05,
+            child: Image.asset(
+              'assets/images/logo.png',
+              fit: BoxFit.cover,
+            ),
+          )),
       drawer: const DrawerWidget(),
       body: SingleChildScrollView(
         child: Padding(
