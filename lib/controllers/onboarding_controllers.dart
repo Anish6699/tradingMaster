@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:optional_master/utils/configs.dart';
 
 class OnboardingControllers {
-  registerApi(
+  Future<Map> registerApi(
     String fname,
     String email,
     String lname,
@@ -43,18 +43,17 @@ class OnboardingControllers {
     print(a);
 
     //  {"response":1,"message":"success","data":{"user_id":"12"}}
-    if (response.statusCode == 200) {
-      print('Request successful');
-    } else {
-      print('Request failed with status: ${response.statusCode}');
-    }
+
     return a;
   }
 
-  Future<Map> loginApi(String mobile, String password) async {
+  Future<Map> loginApi(String email, String password) async {
+    print('loginnnnnnnnnnnnnnnnnnnnnn');
+    print(email);
+    print(password);
     var url = Uri.parse('${serverUrl}login_api');
     Map<String, String> formData = {
-      'mobile': mobile,
+      'email': email,
       'password': password,
     };
     var body = Uri(queryParameters: formData).query;
@@ -72,11 +71,7 @@ class OnboardingControllers {
     // {"response":1,"message":"success",
     // "data":{"user_id":"12","company_id":"0","role_id":"0",
     // "fullname":"Anish Gunjal","email":"anishgunjal.43@gmail.com"}}
-    if (response.statusCode == 200) {
-      print('Request successful');
-    } else {
-      print('Request failed with status: ${response.statusCode}');
-    }
+
     print('aaaaaaaaaaaaaaaaaa');
     print(a);
     return a;
