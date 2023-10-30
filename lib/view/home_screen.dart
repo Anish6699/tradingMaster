@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:optional_master/controllers/other_controllers.dart';
+import 'package:optional_master/utils/colors.dart';
 import 'package:optional_master/view/buy_services.dart';
 import 'package:optional_master/view/service_page.dart';
 import 'package:optional_master/widget/drawerWidget.dart';
@@ -73,67 +74,133 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  contentPadding: const EdgeInsets.all(20),
-                  onTap: () {
-                    Get.to(() => const ServicePage());
-                  },
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 16),
+                decoration: BoxDecoration(
+                  color: Colors.white, // Background color
+                  borderRadius: BorderRadius.circular(15), // Rounded corners
+                  boxShadow: [
+                    const BoxShadow(
+                      color: Colors.white,
+                      offset: Offset(-5, -5),
+                      blurRadius: 10,
+                    ),
+                    BoxShadow(
+                      color: Colors.grey[400]!,
+                      offset: const Offset(5, 5),
+                      blurRadius: 10,
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.all(20),
+                    onTap: () {
+                      Get.to(() => const ServicePage());
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    tileColor: Colors.grey[300],
+                    leading: const Icon(
+                      Icons.home_repair_service_rounded,
+                      color: primaryGreenColor,
+                    ),
+                    title: const Text('Basic'),
+                    trailing: ElevatedButton(
+                        onPressed: () {
+                          Get.to(
+                              () => BuyService(serviceid: '1', data: service1));
+                        },
+                        child: const Text('Buy')),
                   ),
-                  tileColor: Colors.grey[300],
-                  leading: const Icon(Icons.home_repair_service_rounded),
-                  title: const Text('Basic'),
-                  trailing: ElevatedButton(
-                      onPressed: () {
-                        Get.to(
-                            () => BuyService(serviceid: '1', data: service1));
-                      },
-                      child: const Text('Buy')),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  contentPadding: const EdgeInsets.all(20),
-                  onTap: () {
-                    Get.to(() => const ServicePage());
-                  },
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 16),
+                decoration: BoxDecoration(
+                  color: Colors.white, // Background color
+                  borderRadius: BorderRadius.circular(15), // Rounded corners
+                  boxShadow: [
+                    const BoxShadow(
+                      color: Colors.white,
+                      offset: Offset(-5, -5),
+                      blurRadius: 10,
+                    ),
+                    BoxShadow(
+                      color: Colors.grey[400]!,
+                      offset: const Offset(5, 5),
+                      blurRadius: 10,
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.all(20),
+                    onTap: () {
+                      Get.to(() => const ServicePage());
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    tileColor: Colors.grey[300],
+                    leading: const Icon(
+                      Icons.home_repair_service_rounded,
+                      color: primaryGreenColor,
+                    ),
+                    title: const Text('HNI'),
+                    trailing: ElevatedButton(
+                        onPressed: () {
+                          Get.to(
+                              () => BuyService(serviceid: '2', data: service2));
+                        },
+                        child: const Text('Buy')),
                   ),
-                  tileColor: Colors.grey[300],
-                  leading: const Icon(Icons.home_repair_service_rounded),
-                  title: const Text('HNI'),
-                  trailing: ElevatedButton(
-                      onPressed: () {
-                        Get.to(
-                            () => BuyService(serviceid: '2', data: service2));
-                      },
-                      child: const Text('Buy')),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  contentPadding: const EdgeInsets.all(20),
-                  onTap: () {
-                    Get.to(() => const ServicePage());
-                  },
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 16),
+                decoration: BoxDecoration(
+                  color: Colors.white, // Background color
+                  borderRadius: BorderRadius.circular(15), // Rounded corners
+                  boxShadow: [
+                    const BoxShadow(
+                      color: Colors.white,
+                      offset: Offset(-5, -5),
+                      blurRadius: 10,
+                    ),
+                    BoxShadow(
+                      color: Colors.grey[400]!,
+                      offset: const Offset(5, 5),
+                      blurRadius: 10,
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.all(20),
+                    onTap: () {
+                      Get.to(() => const ServicePage());
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    tileColor: Colors.grey[300],
+                    leading: const Icon(
+                      Icons.home_repair_service_rounded,
+                      color: primaryGreenColor,
+                    ),
+                    title: const Text('Special'),
+                    trailing: ElevatedButton(
+                        onPressed: () {
+                          Get.to(
+                              () => BuyService(serviceid: '3', data: service3));
+                        },
+                        child: const Text('Buy')),
                   ),
-                  tileColor: Colors.grey[300],
-                  leading: const Icon(Icons.home_repair_service_rounded),
-                  title: const Text('Special'),
-                  trailing: ElevatedButton(
-                      onPressed: () {
-                        Get.to(
-                            () => BuyService(serviceid: '3', data: service3));
-                      },
-                      child: const Text('Buy')),
                 ),
               ),
 

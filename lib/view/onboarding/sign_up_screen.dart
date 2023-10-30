@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:optional_master/controllers/onboarding_controllers.dart';
 import 'package:optional_master/view/onboarding/login_screen.dart';
@@ -20,6 +21,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   OnboardingControllers onboardingControllers = OnboardingControllers();
+  final RegExp _validCharacters = RegExp(r'^[a-zA-Z ]*$');
+
+  String? _validateEmail(String value) {
+    if (value.isEmpty) {
+      return 'Please enter email';
+    }
+
+    // Define a regular expression pattern for a valid email.
+    final RegExp emailRegex = RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$');
+
+    if (!emailRegex.hasMatch(value)) {
+      return 'Please enter a valid email address';
+    }
+
+    return null; // Return null for no validation errors.
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +78,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: TextFormField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: firstNameController,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(_validCharacters),
+                      ],
+                      validator: (value) =>
+                          value!.isEmpty ? 'Please enter first name' : null,
                       // keyboardType: TextInputType.number,
                       style: const TextStyle(color: primaryBlackTextColor),
                       decoration: InputDecoration(
@@ -88,7 +110,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: TextFormField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: lastNameController,
-                      // keyboardType: TextInputType.number,
+                      validator: (value) =>
+                          value!.isEmpty ? 'Please enter last name' : null,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(_validCharacters),
+                      ],
                       style: const TextStyle(color: primaryBlackTextColor),
                       decoration: InputDecoration(
                         fillColor: Colors.white,
@@ -115,6 +141,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: TextFormField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: numberController,
+                      validator: (value) => value!.isEmpty
+                          ? 'Please enter phone number'
+                          // : !value.contains(RegExp(r'(^[0-9]{10}$)'))
+                          : !value.contains(RegExp(r'^[6-9]\d{9}$'))
+                              ? 'Enter valid phone number'
+                              : null,
                       keyboardType: TextInputType.number,
                       style: const TextStyle(color: primaryBlackTextColor),
                       decoration: InputDecoration(
@@ -140,6 +172,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Container(
                     margin: const EdgeInsets.symmetric(vertical: 15),
                     child: TextFormField(
+                      validator: (value) => _validateEmail(value!),
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: emailController,
                       keyboardType: TextInputType.emailAddress,
@@ -169,6 +202,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: TextFormField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: passwordController,
+                      validator: (value) =>
+                          value!.isEmpty ? 'Please enter password' : null,
                       // keyboardType: TextInputType.number,
                       style: const TextStyle(color: primaryBlackTextColor),
                       decoration: InputDecoration(
@@ -216,111 +251,111 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                         onPressed: () {
-                          // Get.to(() => OtpVerification(
-                          //       phoneNumber: numberController.text,
-                          //
-                          showDialog(
-                            barrierDismissible: false,
-                            context: context,
-                            builder: (BuildContext context) {
-                              return FutureBuilder(
-                                builder: (
-                                  BuildContext context,
-                                  AsyncSnapshot<Map> snapshot,
-                                ) {
-                                  List<Widget> children;
-                                  if (snapshot.hasData) {
-                                    var data = snapshot.data;
-                                    print('dataaaaaaaaaaaaaaa');
-                                    print(data);
-                                    if (data!['message'].toString() ==
-                                        "success") {
+                          if (_formKey.currentState!.validate()) {
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return FutureBuilder(
+                                  builder: (
+                                    BuildContext context,
+                                    AsyncSnapshot<Map> snapshot,
+                                  ) {
+                                    List<Widget> children;
+                                    if (snapshot.hasData) {
+                                      var data = snapshot.data;
+                                      print('dataaaaaaaaaaaaaaa');
+                                      print(data);
+                                      if (data!['message'].toString() ==
+                                          "success") {
+                                        Future.delayed(
+                                            const Duration(seconds: 2), () {
+                                          Get.offAll(() => const LoginScreen());
+                                        });
+
+                                        children = <Widget>[
+                                          const Icon(
+                                            Icons.check_circle_outline,
+                                            color: Colors.green,
+                                            size: 60,
+                                          ),
+                                          const Padding(
+                                            padding: EdgeInsets.only(top: 16),
+                                            child: Text(
+                                              'Signup Successfully',
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                            ),
+                                          ),
+                                        ];
+                                      } else {
+                                        Future.delayed(
+                                            const Duration(seconds: 2), () {
+                                          Get.back();
+                                        });
+                                        children = <Widget>[
+                                          const Icon(
+                                            Icons.error_outline,
+                                            color: Colors.red,
+                                            size: 60,
+                                          ),
+                                          const Padding(
+                                            padding: EdgeInsets.only(top: 16),
+                                            child: Text(
+                                              'Failed to SignUp',
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                            ),
+                                          ),
+                                        ];
+                                      }
+                                    } else {
+                                      print('snapshot.data');
+                                      print(snapshot.data);
                                       Future.delayed(const Duration(seconds: 2),
                                           () {
                                         Get.offAll(() => const LoginScreen());
                                       });
 
-                                      children = <Widget>[
-                                        const Icon(
-                                          Icons.check_circle_outline,
-                                          color: Colors.green,
-                                          size: 60,
+                                      children = const <Widget>[
+                                        SizedBox(
+                                          width: 60,
+                                          height: 60,
+                                          child: CircularProgressIndicator(),
                                         ),
-                                        const Padding(
+                                        Padding(
                                           padding: EdgeInsets.only(top: 16),
                                           child: Text(
-                                            'Signup Successfully',
+                                            'Signing Up',
                                             style:
                                                 TextStyle(color: Colors.black),
                                           ),
-                                        ),
-                                      ];
-                                    } else {
-                                      Future.delayed(const Duration(seconds: 2),
-                                          () {
-                                        Get.back();
-                                      });
-                                      children = <Widget>[
-                                        const Icon(
-                                          Icons.error_outline,
-                                          color: Colors.red,
-                                          size: 60,
-                                        ),
-                                        const Padding(
-                                          padding: EdgeInsets.only(top: 16),
-                                          child: Text(
-                                            'Failed to SignUp',
-                                            style:
-                                                TextStyle(color: Colors.black),
-                                          ),
-                                        ),
+                                        )
                                       ];
                                     }
-                                  } else {
-                                    print('snapshot.data');
-                                    print(snapshot.data);
-                                    Future.delayed(const Duration(seconds: 2),
-                                        () {
-                                      Get.offAll(() => const LoginScreen());
-                                    });
-
-                                    children = const <Widget>[
-                                      SizedBox(
-                                        width: 60,
-                                        height: 60,
-                                        child: CircularProgressIndicator(),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 16),
-                                        child: Text(
-                                          'Signing Up',
-                                          style: TextStyle(color: Colors.black),
-                                        ),
-                                      )
-                                    ];
-                                  }
-                                  return AlertDialog(
-                                    content: SizedBox(
-                                      height: 150,
-                                      child: Center(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: children,
+                                    return AlertDialog(
+                                      content: SizedBox(
+                                        height: 150,
+                                        child: Center(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: children,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  );
-                                },
-                                future: onboardingControllers.registerApi(
-                                    firstNameController.text,
-                                    lastNameController.text,
-                                    emailController.text,
-                                    numberController.text,
-                                    passwordController.text),
-                              );
-                            },
-                          );
+                                    );
+                                  },
+                                  future: onboardingControllers.registerApi(
+                                      firstNameController.text,
+                                      lastNameController.text,
+                                      emailController.text,
+                                      numberController.text,
+                                      passwordController.text),
+                                );
+                              },
+                            );
+                          }
                         },
                         child: const Text(
                           "Sign Up",
