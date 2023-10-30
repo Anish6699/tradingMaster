@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     List a = await allControllers.getAllPackages();
 
     for (int i = 0; i < a.length; i++) {
-      if (a[i]['company_id'].toString() == '1') {
+      if (a[i]['company_id'].toString() == '2') {
         allData.add(a[i]);
       }
     }
