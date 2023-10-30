@@ -18,7 +18,6 @@ class _EditProfileState extends State<EditProfile> {
   TextEditingController adharController = TextEditingController();
   TextEditingController panController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  final _formKey2 = GlobalKey<FormState>();
   UserDataController userData = UserDataController();
   List data = [];
 
@@ -264,18 +263,20 @@ class _EditProfileState extends State<EditProfile> {
                               ),
                             ),
                             onPressed: () {
-                              userData
-                                  .updateUserData(
-                                      adhar: adharController.text,
-                                      pan: panController.text)
-                                  .then((value) => value['response'] == 1
-                                      ? Get.snackbar(
-                                          "Notification",
-                                          "Updated Successfully.",
-                                          colorText: Colors.white,
-                                          icon: const Icon(Icons.add_alert),
-                                        )
-                                      : null);
+                              if (_formKey.currentState!.validate()) {
+                                userData
+                                    .updateUserData(
+                                        adhar: adharController.text,
+                                        pan: panController.text)
+                                    .then((value) => value['response'] == 1
+                                        ? Get.snackbar(
+                                            "Notification",
+                                            "Updated Successfully.",
+                                            colorText: Colors.white,
+                                            icon: const Icon(Icons.add_alert),
+                                          )
+                                        : null);
+                              }
                             },
                             child: const Text(
                               "Save",
