@@ -38,6 +38,9 @@ class _ServicePageState extends State<BuyService> {
 
   void handlePaymentSuccess(PaymentSuccessResponse response) {
     print("Payment success: ${response.paymentId}");
+    String? paymentId = response.paymentId;
+    // The `paymentId` contains the transaction ID.
+    print('Payment successful. Payment ID: $paymentId');
   }
 
   void handlePaymentError(PaymentFailureResponse response) {
@@ -51,7 +54,7 @@ class _ServicePageState extends State<BuyService> {
   void startPayment() {
     var options = {
       'key': 'rzp_live_ugzy7jQenOQFN6',
-      'amount': 10, 
+      'amount': 100,
       'name': 'Package',
       'description': 'Test Payment',
       'prefill': {
