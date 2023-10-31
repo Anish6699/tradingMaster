@@ -48,14 +48,15 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             child: data.isNotEmpty
                 ? UserAccountsDrawerHeader(
                     currentAccountPicture: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: Text(data[0]['fname'][0])
+                      backgroundColor: Colors.white,
+                      child:
+                          // Text(data[0]['fname'][0])
 
-                        // Icon(
-                        //   Icons.person,
-                        //   size: 20,
-                        // ),
-                        ),
+                          Icon(
+                        Icons.person,
+                        size: 20,
+                      ),
+                    ),
                     decoration: const BoxDecoration(color: Colors.green),
                     accountName: Text(
                       '${data[0]['fname']} ${data[0]['lname']}',
