@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:optional_master/controllers/onboarding_controllers.dart';
+import 'package:optional_master/view/home_screen.dart';
 import 'package:optional_master/view/onboarding/login_screen.dart';
 import 'package:optional_master/view/onboarding/otp_verification.dart';
 import '../../utils/colors.dart';
@@ -270,7 +271,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           "success") {
                                         Future.delayed(
                                             const Duration(seconds: 2), () {
-                                          Get.offAll(() => const LoginScreen());
+                                          Get.offAll(() => const HomeScreen());
                                         });
 
                                         children = <Widget>[

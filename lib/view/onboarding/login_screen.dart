@@ -213,7 +213,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       print(snapshot.data);
                                       Future.delayed(const Duration(seconds: 2),
                                           () {
-                                        Get.offAll(() => const LoginScreen());
+                                            Get.back();
                                       });
 
                                       children = const <Widget>[
@@ -252,9 +252,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               },
                             );
                           }
-                          // onboardingControllers.loginApi();
-
-                          // Get.offAll(() => const HomeScreen());
                         },
                         child: const Text(
                           "Sign In",
