@@ -44,8 +44,7 @@ class UserDataController {
   //   return data;
   // }
 
-
-  Future<Map> updateUserData({required var adhar,required var pan}) async {
+  Future<Map> updateUserData({required var adhar, required var pan}) async {
     var prefs = await SharedPreferences.getInstance();
     var userId = prefs.getString('userId');
     var url = Uri.parse('${serverUrl}update_api/tbl_users/user_id/$userId');

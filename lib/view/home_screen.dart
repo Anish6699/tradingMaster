@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:optional_master/controllers/get_user_data_controller.dart';
 import 'package:optional_master/controllers/other_controllers.dart';
 import 'package:optional_master/utils/colors.dart';
 import 'package:optional_master/view/buy_services.dart';
@@ -14,12 +15,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 AllControllers allControllers = AllControllers();
+UserDataController userData = UserDataController();
 
 class _HomeScreenState extends State<HomeScreen> {
+  List data = [];
   List allData = [];
   List service1 = [];
   List service2 = [];
   List service3 = [];
+  bool dateComparison = false;
 
   @override
   void initState() {
@@ -27,8 +31,57 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  bool isDateMoreThan7DaysInFuture(String dateString) {
+    // Split the given date string and convert it to the format 'yyyy-MM-dd'
+    List<String> parts = dateString.split('-');
+    if (parts.length == 3) {
+      String formattedDate = '${parts[2]}-${parts[1]}-${parts[0]}';
+
+      // Parse the formatted date
+      DateTime givenDate = DateTime.parse(formattedDate);
+
+      // Get today's date
+      DateTime today = DateTime.now();
+
+      // Extract the date part (without the time)
+      DateTime givenDateOnlyDate =
+          DateTime(givenDate.year, givenDate.month, givenDate.day);
+      DateTime todayOnlyDate = DateTime(today.year, today.month, today.day);
+
+      // Calculate the difference in days
+      Duration difference = todayOnlyDate.difference(givenDateOnlyDate);
+
+      // Check if the difference is greater than 7 days
+
+      return difference.inDays > 7;
+    }
+    return false;
+  }
+
   getData() async {
     List a = await allControllers.getAllPackages();
+    data = await userData.getUserData();
+    dateComparison =
+        isDateMoreThan7DaysInFuture(data[0]['created_date'].toString());
+    if (dateComparison == false) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text('Free Trail Status'),
+              content: Text('7 days Free Trail Available'),
+            );
+          });
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text('Free Trail Status'),
+              content: Text('7 days Free Trail Ended!'),
+            );
+          });
+    }
 
     for (int i = 0; i < a.length; i++) {
       if (a[i]['company_id'].toString() == '2') {
@@ -47,11 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
         service3.add(allData[i]);
       }
     }
-
-    print('servicesssssssssss');
-    print(service1);
-    print(service2);
-    print(service3);
+    setState(() {});
   }
 
   @override
@@ -97,7 +146,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ListTile(
                     contentPadding: const EdgeInsets.all(20),
                     onTap: () {
-                      Get.to(() => const ServicePage());
+                      Get.to(() => BuyService(
+                            serviceid: '1',
+                            data: service1,
+                            trailEnded: dateComparison,
+                          ));
+                      // Get.to(() => const ServicePage());
                     },
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
@@ -110,8 +164,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     title: const Text('Basic'),
                     trailing: ElevatedButton(
                         onPressed: () {
-                          Get.to(
-                              () => BuyService(serviceid: '1', data: service1));
+                          Get.to(() => BuyService(
+                              serviceid: '1',
+                              data: service1,
+                              trailEnded: dateComparison));
                         },
                         child: const Text('Buy')),
                   ),
@@ -140,7 +196,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ListTile(
                     contentPadding: const EdgeInsets.all(20),
                     onTap: () {
-                      Get.to(() => const ServicePage());
+                      Get.to(() => BuyService(
+                          serviceid: '2',
+                          data: service2,
+                          trailEnded: dateComparison));
+                      // Get.to(() => const ServicePage());
                     },
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
@@ -153,8 +213,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     title: const Text('HNI'),
                     trailing: ElevatedButton(
                         onPressed: () {
-                          Get.to(
-                              () => BuyService(serviceid: '2', data: service2));
+                          Get.to(() => BuyService(
+                              serviceid: '2',
+                              data: service2,
+                              trailEnded: dateComparison));
                         },
                         child: const Text('Buy')),
                   ),
@@ -183,7 +245,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ListTile(
                     contentPadding: const EdgeInsets.all(20),
                     onTap: () {
-                      Get.to(() => const ServicePage());
+                      // Get.to(() => const ServicePage());
+                      Get.to(() => BuyService(
+                          serviceid: '3',
+                          data: service3,
+                          trailEnded: dateComparison));
                     },
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
@@ -196,8 +262,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     title: const Text('Special'),
                     trailing: ElevatedButton(
                         onPressed: () {
-                          Get.to(
-                              () => BuyService(serviceid: '3', data: service3));
+                          Get.to(() => BuyService(
+                              serviceid: '3',
+                              data: service3,
+                              trailEnded: dateComparison));
                         },
                         child: const Text('Buy')),
                   ),

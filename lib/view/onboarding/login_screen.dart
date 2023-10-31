@@ -211,7 +211,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     } else {
                                       print('snapshot.data');
                                       print(snapshot.data);
-                                      Future.delayed(const Duration(seconds: 5),
+                                      Future.delayed(const Duration(seconds: 2),
                                           () {
                                         Get.offAll(() => const LoginScreen());
                                       });
