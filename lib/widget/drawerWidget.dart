@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:optional_master/controllers/get_user_data_controller.dart';
 import 'package:optional_master/view/home_screen.dart';
+import 'package:optional_master/view/myservice_performance.dart';
 import 'package:optional_master/view/onboarding/login_screen.dart';
 import 'package:optional_master/view/onboarding/profile.dart';
 import 'package:optional_master/view/performance.dart';
@@ -96,7 +97,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               style: TextStyle(fontSize: 20),
             ),
             onTap: () {
-              Get.to(() => const Performance());
+              Get.to(() => PerformanceServices());
             },
           ),
           // ListTile(

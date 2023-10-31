@@ -1,15 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:optional_master/controllers/service_performance_controller.dart';
 import 'package:optional_master/utils/colors.dart';
 import 'package:optional_master/widget/drawerWidget.dart';
 
 class Performance extends StatefulWidget {
-  const Performance({Key? key}) : super(key: key);
+  final String servicedetail_id;
+  const Performance({Key? key, required this.servicedetail_id})
+      : super(key: key);
 
   @override
   State<Performance> createState() => _PerformanceState();
 }
 
 class _PerformanceState extends State<Performance> {
+  ServicePerformanceControllers spcontroller = ServicePerformanceControllers();
+  List performanceDetailList = [];
+  void initState() {
+    getData();
+
+    super.initState();
+  }
+
+  getData() async {
+    performanceDetailList = await spcontroller
+        .getPerformanceofService(widget.servicedetail_id.toString());
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +43,7 @@ class _PerformanceState extends State<Performance> {
           child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.9,
         child: ListView.builder(
-            itemCount: 10,
+            itemCount: performanceDetailList.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -46,7 +63,7 @@ class _PerformanceState extends State<Performance> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
                                     'Service  :  ',
                                     style: TextStyle(
@@ -54,7 +71,16 @@ class _PerformanceState extends State<Performance> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    'Basic',
+                                    performanceDetailList[index]['service_id']
+                                                .toString() ==
+                                            '1'
+                                        ? 'Basic'
+                                        : performanceDetailList[index]
+                                                        ['service_id']
+                                                    .toString() ==
+                                                '2'
+                                            ? 'HNI'
+                                            : 'Special',
                                     style: TextStyle(
                                         fontSize: 12, color: Colors.black54),
                                   ),
@@ -68,7 +94,9 @@ class _PerformanceState extends State<Performance> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    'SELL',
+                                    performanceDetailList[index]
+                                            ['recommendations']
+                                        .toString(),
                                     style: TextStyle(
                                         fontSize: 12, color: Colors.black54),
                                   ),
@@ -80,7 +108,7 @@ class _PerformanceState extends State<Performance> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
                                     'Instrument  :  ',
                                     style: TextStyle(
@@ -88,7 +116,8 @@ class _PerformanceState extends State<Performance> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    'BHS 5454',
+                                    performanceDetailList[index]['instrument']
+                                        .toString(),
                                     style: TextStyle(
                                         fontSize: 12, color: Colors.black54),
                                   ),
@@ -102,7 +131,7 @@ class _PerformanceState extends State<Performance> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    '234-532',
+                                    '${performanceDetailList[index]['range_upper'].toString()}-${performanceDetailList[index]['range_lower'].toString()}',
                                     style: TextStyle(
                                         fontSize: 12, color: Colors.black54),
                                   ),
@@ -124,10 +153,12 @@ class _PerformanceState extends State<Performance> {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 16.0, vertical: 8),
                                     child: Column(
-                                      children: const [
+                                      children: [
                                         Text('Lot Size'),
                                         Text(
-                                          '200',
+                                          performanceDetailList[index]
+                                                  ['lot_size']
+                                              .toString(),
                                           style: TextStyle(fontSize: 12),
                                         ),
                                       ],
@@ -143,10 +174,12 @@ class _PerformanceState extends State<Performance> {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 16.0, vertical: 8),
                                     child: Column(
-                                      children: const [
+                                      children: [
                                         Text('Target 1'),
                                         Text(
-                                          '350',
+                                          performanceDetailList[index]
+                                                  ['target_1']
+                                              .toString(),
                                           style: TextStyle(fontSize: 12),
                                         ),
                                       ],
@@ -162,29 +195,12 @@ class _PerformanceState extends State<Performance> {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 16.0, vertical: 8),
                                     child: Column(
-                                      children: const [
+                                      children: [
                                         Text('Target 2'),
                                         Text(
-                                          '400',
-                                          style: TextStyle(fontSize: 12),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                  ),
-                                  color: Colors.grey[200],
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0, vertical: 8),
-                                    child: Column(
-                                      children: const [
-                                        Text('Stop Loss'),
-                                        Text(
-                                          '400',
+                                          performanceDetailList[index]
+                                                  ['target_2']
+                                              .toString(),
                                           style: TextStyle(fontSize: 12),
                                         ),
                                       ],
@@ -209,8 +225,9 @@ class _PerformanceState extends State<Performance> {
                                   SizedBox(
                                     width:
                                         MediaQuery.of(context).size.width * 0.6,
-                                    child: const Text(
-                                      'Intra BIST',
+                                    child: Text(
+                                      performanceDetailList[index]['duration']
+                                          .toString(),
                                       style: TextStyle(
                                           fontSize: 12, color: Colors.black54),
                                     ),
@@ -226,14 +243,14 @@ class _PerformanceState extends State<Performance> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               Text(
-                                'Service Details  :  ',
+                                'Instrument  :  ',
                                 style: TextStyle(
                                     fontSize: 12, fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                'Basic Sell BHS 5454',
+                                performanceDetailList[index]['instrument'],
                                 style: TextStyle(
                                     fontSize: 12, color: Colors.black54),
                               ),
@@ -246,6 +263,25 @@ class _PerformanceState extends State<Performance> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            // Card(
+                            //   shape: RoundedRectangleBorder(
+                            //     borderRadius: BorderRadius.circular(15.0),
+                            //   ),
+                            //   color: Colors.grey[200],
+                            //   child: Padding(
+                            //     padding: const EdgeInsets.symmetric(
+                            //         horizontal: 16.0, vertical: 8),
+                            //     child: Column(
+                            //       children: const [
+                            //         Text('Quantity'),
+                            //         Text(
+                            //           '200',
+                            //           style: TextStyle(fontSize: 12),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
                             Card(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
@@ -255,29 +291,10 @@ class _PerformanceState extends State<Performance> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 16.0, vertical: 8),
                                 child: Column(
-                                  children: const [
-                                    Text('Quantity'),
-                                    Text(
-                                      '200',
-                                      style: TextStyle(fontSize: 12),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                              color: Colors.grey[200],
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16.0, vertical: 8),
-                                child: Column(
-                                  children: const [
+                                  children: [
                                     Text('Entry'),
                                     Text(
-                                      '350',
+                                      performanceDetailList[index]['entry'],
                                       style: TextStyle(fontSize: 12),
                                     ),
                                   ],
@@ -293,10 +310,10 @@ class _PerformanceState extends State<Performance> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 16.0, vertical: 8),
                                 child: Column(
-                                  children: const [
+                                  children: [
                                     Text('Exit'),
                                     Text(
-                                      '400',
+                                      performanceDetailList[index]['exit'],
                                       style: TextStyle(fontSize: 12),
                                     ),
                                   ],
@@ -312,13 +329,14 @@ class _PerformanceState extends State<Performance> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 16.0, vertical: 8),
                                 child: Column(
-                                  children: const [
+                                  children: [
                                     Text('Profit & Loss'),
                                     Text(
-                                      '400',
+                                      performanceDetailList[index]
+                                          ['profit_loss'],
                                       style: TextStyle(
                                           fontSize: 12,
-                                          color: Colors.green,
+                                          color: Colors.black,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ],
@@ -341,8 +359,8 @@ class _PerformanceState extends State<Performance> {
                               ),
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.6,
-                                child: const Text(
-                                  'Basic asdfghjkl asfghjkl asdfghjkl sfghjkl',
+                                child: Text(
+                                  performanceDetailList[index]['disclaimer'],
                                   style: TextStyle(
                                       fontSize: 12, color: Colors.black54),
                                 ),

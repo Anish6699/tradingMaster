@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:optional_master/controllers/service_performance_controller.dart';
 import 'package:optional_master/utils/colors.dart';
+import 'package:optional_master/view/performance.dart';
 import 'package:optional_master/view/service_details.dart';
 import 'package:optional_master/widget/drawerWidget.dart';
 
-class Services extends StatefulWidget {
-  const Services({Key? key}) : super(key: key);
+class PerformanceServices extends StatefulWidget {
+  PerformanceServices({Key? key}) : super(key: key);
 
   @override
-  State<Services> createState() => _ServicesState();
+  State<PerformanceServices> createState() => _ServicesState();
 }
 
-class _ServicesState extends State<Services> {
+class _ServicesState extends State<PerformanceServices> {
   ServicePerformanceControllers spcontroller = ServicePerformanceControllers();
   @override
   List myserviceList = [];
@@ -34,7 +35,7 @@ class _ServicesState extends State<Services> {
         centerTitle: true,
         backgroundColor: primaryGreenColor,
         title: const Text(
-          'My Services',
+          'My PerformanceServices',
           style: TextStyle(fontSize: 25),
         ),
       ),
@@ -155,7 +156,7 @@ class _ServicesState extends State<Services> {
                                 ),
                               ),
                               onPressed: () {
-                                Get.to(() => ServicesDetails(
+                                Get.to(() => Performance(
                                       servicedetail_id: myserviceList[index]
                                               ['service_id']
                                           .toString(),
@@ -166,7 +167,7 @@ class _ServicesState extends State<Services> {
                                 child: Column(
                                   children: const [
                                     Text(
-                                      "Open",
+                                      "Performance",
                                       style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                       ),
