@@ -47,7 +47,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             ), //BoxDecoration
             child: data.isNotEmpty
                 ? UserAccountsDrawerHeader(
-                    currentAccountPicture: CircleAvatar(
+                    currentAccountPicture: const CircleAvatar(
                       backgroundColor: Colors.white,
                       child:
                           // Text(data[0]['fname'][0])
@@ -63,9 +63,9 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       // "Mangesh Ghodke",
                       style: const TextStyle(fontSize: 20),
                     ),
-                    accountEmail: Text(data[0]['email']),
-                    currentAccountPictureSize:
-                        const Size.square(50), //circleAvatar
+                    // accountEmail: Text(data[0]['email']),
+                    currentAccountPictureSize: const Size.square(50),
+                    accountEmail: null, //circleAvatar
                   )
                 : const Center(
                     child:

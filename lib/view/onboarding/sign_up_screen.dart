@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:optional_master/controllers/onboarding_controllers.dart';
 import 'package:optional_master/view/home_screen.dart';
 import 'package:optional_master/view/onboarding/login_screen.dart';
-import 'package:optional_master/view/onboarding/otp_verification.dart';
 import '../../utils/colors.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -203,6 +202,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: TextFormField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: passwordController,
+                      obscureText: true,
                       validator: (value) =>
                           value!.isEmpty ? 'Please enter password' : null,
                       // keyboardType: TextInputType.number,
@@ -313,9 +313,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     } else {
                                       print('snapshot.data');
                                       print(snapshot.data);
-                                      Future.delayed(const Duration(seconds: 2),
+                                      Future.delayed(const Duration(seconds: 5),
                                           () {
-                                        Get.offAll(() => const LoginScreen());
+                                        Get.back();
+                                        // Get.offAll(() => const LoginScreen());
                                       });
 
                                       children = const <Widget>[
