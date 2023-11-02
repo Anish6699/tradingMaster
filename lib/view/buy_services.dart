@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:optional_master/controllers/service_performance_controller.dart';
 import 'package:optional_master/utils/colors.dart';
 import 'package:optional_master/view/service_details.dart';
 import 'package:optional_master/widget/drawerWidget.dart';
@@ -23,6 +24,8 @@ class BuyService extends StatefulWidget {
 
 class _ServicePageState extends State<BuyService> {
   late Razorpay _razorpay;
+  ServicePerformanceControllers servicePerformanceControllers =
+      ServicePerformanceControllers();
   @override
   void initState() {
     _razorpay = Razorpay();
@@ -36,10 +39,20 @@ class _ServicePageState extends State<BuyService> {
     super.initState();
   }
 
+  addInPayment() {
+    servicePerformanceControllers.addPaymentforUser(
+        ammount: sendData['amount'],
+        companyId: sendData['company_id'],
+        packageId: sendData['package_id'],
+        serviceId: sendData['service_id'],
+        transactionId: paymentId);
+  }
+
   void handlePaymentSuccess(PaymentSuccessResponse response) {
     print("Payment success: ${response.paymentId}");
-    String? paymentId = response.paymentId;
+    paymentId = response.paymentId!;
     // The `paymentId` contains the transaction ID.
+    addInPayment();
     print('Payment successful. Payment ID: $paymentId');
   }
 
@@ -51,12 +64,12 @@ class _ServicePageState extends State<BuyService> {
     print("External wallet selected: ${response.walletName}");
   }
 
-  void startPayment() {
+  void startPayment({required int ammount}) {
     var options = {
       'key': 'rzp_live_ugzy7jQenOQFN6',
-      'amount': 100,
+      'amount': ammount * 100,
       'name': 'Package',
-      'description': 'Test Payment',
+      'description': 'package payment',
       'prefill': {
         'contact': '1234567890',
         'email': 'test@example.com',
@@ -72,6 +85,9 @@ class _ServicePageState extends State<BuyService> {
       print(e.toString());
     }
   }
+
+  Map sendData = {};
+  String paymentId = '';
 
   @override
   Widget build(BuildContext context) {
@@ -222,7 +238,92 @@ class _ServicePageState extends State<BuyService> {
                                   ),
                                 ),
                                 onPressed: () {
-                                  startPayment();
+                                  // startPayment();
+                                  TextEditingController ammount =
+                                      TextEditingController();
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return Center(
+                                          child: Center(
+                                            child: AlertDialog(
+                                              title: Text('Buy Service'),
+                                              content: SingleChildScrollView(
+                                                child: Column(
+                                                  children: [
+                                                    Container(
+                                                      margin: const EdgeInsets
+                                                              .symmetric(
+                                                          vertical: 15),
+                                                      child: TextFormField(
+                                                        autovalidateMode:
+                                                            AutovalidateMode
+                                                                .onUserInteraction,
+                                                        controller: ammount,
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .number,
+                                                        style: const TextStyle(
+                                                            color:
+                                                                primaryBlackTextColor),
+                                                        decoration:
+                                                            InputDecoration(
+                                                          fillColor:
+                                                              Colors.white,
+                                                          filled: true,
+                                                          labelText: 'Ammount',
+                                                          labelStyle:
+                                                              const TextStyle(
+                                                                  color:
+                                                                      primaryBlackTextColor),
+                                                          contentPadding:
+                                                              const EdgeInsets
+                                                                  .all(15),
+                                                          border:
+                                                              OutlineInputBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        100),
+                                                            borderSide:
+                                                                const BorderSide(
+                                                                    color:
+                                                                        primaryBlackBorderColor),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    ElevatedButton(
+                                                        onPressed: () {
+                                                          if (ammount.text !=
+                                                              '') {
+                                                            sendData = {
+                                                              "company_id": '2',
+                                                              "service_id":
+                                                                  widget
+                                                                      .serviceid,
+                                                              "package_id": widget
+                                                                          .data[
+                                                                      index][
+                                                                  'package_name'],
+                                                              "amount":
+                                                                  ammount.text,
+                                                            };
+
+                                                            startPayment(
+                                                                ammount: int
+                                                                    .parse(ammount
+                                                                        .text));
+                                                          }
+                                                        },
+                                                        child: Text('PAY'))
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      });
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),

@@ -209,13 +209,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                         ];
                                       }
                                     } else {
-                                      print('snapshot.data');
-                                      print(snapshot.data);
-                                      Future.delayed(const Duration(seconds: 2),
-                                          () {
-                                            Get.back();
-                                      });
-
                                       children = const <Widget>[
                                         SizedBox(
                                           width: 60,

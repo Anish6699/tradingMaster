@@ -215,7 +215,8 @@ class _PerformanceState extends State<Performance> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     children: [
@@ -227,12 +228,15 @@ class _PerformanceState extends State<Performance> {
                                       ),
                                       SizedBox(
                                         width:
-                                        MediaQuery.of(context).size.width * 0.6,
+                                            MediaQuery.of(context).size.width *
+                                                0.2,
                                         child: Text(
-                                          performanceDetailList[index]['duration']
+                                          performanceDetailList[index]
+                                                  ['stop_loss']
                                               .toString(),
                                           style: const TextStyle(
-                                              fontSize: 12, color: Colors.black54),
+                                              fontSize: 12,
+                                              color: Colors.black54),
                                         ),
                                       ),
                                     ],
@@ -247,12 +251,15 @@ class _PerformanceState extends State<Performance> {
                                       ),
                                       SizedBox(
                                         width:
-                                            MediaQuery.of(context).size.width * 0.6,
+                                            MediaQuery.of(context).size.width *
+                                                0.2,
                                         child: Text(
-                                          performanceDetailList[index]['duration']
+                                          performanceDetailList[index]
+                                                  ['duration']
                                               .toString(),
                                           style: const TextStyle(
-                                              fontSize: 12, color: Colors.black54),
+                                              fontSize: 12,
+                                              color: Colors.black54),
                                         ),
                                       ),
                                     ],

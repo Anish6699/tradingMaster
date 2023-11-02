@@ -59,7 +59,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     ),
                     decoration: const BoxDecoration(color: Colors.green),
                     accountName: Text(
-                      '${data[0]['fname']} ${data[0]['lname']}',
+                      '${data[0]['fname'][0].toUpperCase() + data[0]['fname'].substring(1)} ${data[0]['lname'][0].toUpperCase() + data[0]['lname'].substring(1)}',
                       // "Mangesh Ghodke",
                       style: const TextStyle(fontSize: 20),
                     ),

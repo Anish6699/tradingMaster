@@ -204,24 +204,58 @@ class _ServicesState extends State<ServicesDetails> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              const Text(
-                                'Duration  :  ',
-                                style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.6,
-                                child: Text(
-                                  serviceDetailList[index]['duration']
-                                      .toString(),
-                                  style: TextStyle(
-                                      fontSize: 12, color: Colors.black54),
-                                ),
-                              ),
-                            ],
-                          ),
+                          child:    Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Text(
+                                        'StopLoss  :  ',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.2,
+                                        child: Text(
+                                          serviceDetailList[index]
+                                                  ['stop_loss']
+                                              .toString(),
+                                          style: const TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.black54),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Text(
+                                        'Duration  :  ',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.2,
+                                        child: Text(
+                                          serviceDetailList[index]
+                                                  ['duration']
+                                              .toString(),
+                                          style: const TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.black54),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              )          
                         )
                       ],
                     ),
