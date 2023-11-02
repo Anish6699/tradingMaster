@@ -64,23 +64,36 @@ class _HomeScreenState extends State<HomeScreen> {
     dateComparison =
         isDateMoreThan7DaysInFuture(data[0]['created_date'].toString());
     if (dateComparison == false) {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text('Free Trail Status'),
-              content: Text('7 days Free Trail Available'),
-            );
-          });
+      Get.snackbar("Free Trail Status", "7 days Free Trail Available",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.white,
+          colorText: Colors.black);
+
+      // showDialog(
+      //     context: context,
+      //     builder: (context) {
+      //       return AlertDialog(
+      //         title: Text('Free Trail Status'),
+      //         content: Text('7 days Free Trail Available'),
+      //       );
+      //     });
     } else {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text('Free Trail Status'),
-              content: Text('7 days Free Trail Ended!'),
-            );
-          });
+      Get.snackbar("Free Trail Status", "7 days Free Trail Ended!",
+          icon: const Icon(
+            Icons.notifications_none_rounded,
+            color: Colors.black,
+          ),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.white,
+          colorText: Colors.black);
+      // showDialog(
+      //     context: context,
+      //     builder: (context) {
+      //       return AlertDialog(
+      //         title: Text('Free Trail Status'),
+      //         content: Text('7 days Free Trail Ended!'),
+      //       );
+      //     });
     }
 
     for (int i = 0; i < a.length; i++) {

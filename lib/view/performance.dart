@@ -64,7 +64,7 @@ class _PerformanceState extends State<Performance> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'Service  :  ',
                                     style: TextStyle(
                                         fontSize: 12,
@@ -81,13 +81,13 @@ class _PerformanceState extends State<Performance> {
                                                 '2'
                                             ? 'HNI'
                                             : 'Special',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 12, color: Colors.black54),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 20,
                                   ),
-                                  Text(
+                                  const Text(
                                     'Recomendation  :  ',
                                     style: TextStyle(
                                         fontSize: 12,
@@ -97,7 +97,7 @@ class _PerformanceState extends State<Performance> {
                                     performanceDetailList[index]
                                             ['recommendations']
                                         .toString(),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 12, color: Colors.black54),
                                   ),
                                 ],
@@ -109,7 +109,7 @@ class _PerformanceState extends State<Performance> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'Instrument  :  ',
                                     style: TextStyle(
                                         fontSize: 12,
@@ -118,13 +118,13 @@ class _PerformanceState extends State<Performance> {
                                   Text(
                                     performanceDetailList[index]['instrument']
                                         .toString(),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 12, color: Colors.black54),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 20,
                                   ),
-                                  Text(
+                                  const Text(
                                     'Entry Type  :  ',
                                     style: TextStyle(
                                         fontSize: 12,
@@ -132,7 +132,7 @@ class _PerformanceState extends State<Performance> {
                                   ),
                                   Text(
                                     '${performanceDetailList[index]['range_upper'].toString()}-${performanceDetailList[index]['range_lower'].toString()}',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 12, color: Colors.black54),
                                   ),
                                 ],
@@ -154,12 +154,12 @@ class _PerformanceState extends State<Performance> {
                                         horizontal: 16.0, vertical: 8),
                                     child: Column(
                                       children: [
-                                        Text('Lot Size'),
+                                        const Text('Lot Size'),
                                         Text(
                                           performanceDetailList[index]
                                                   ['lot_size']
                                               .toString(),
-                                          style: TextStyle(fontSize: 12),
+                                          style: const TextStyle(fontSize: 12),
                                         ),
                                       ],
                                     ),
@@ -175,12 +175,12 @@ class _PerformanceState extends State<Performance> {
                                         horizontal: 16.0, vertical: 8),
                                     child: Column(
                                       children: [
-                                        Text('Target 1'),
+                                        const Text('Target 1'),
                                         Text(
                                           performanceDetailList[index]
                                                   ['target_1']
                                               .toString(),
-                                          style: TextStyle(fontSize: 12),
+                                          style: const TextStyle(fontSize: 12),
                                         ),
                                       ],
                                     ),
@@ -196,12 +196,12 @@ class _PerformanceState extends State<Performance> {
                                         horizontal: 16.0, vertical: 8),
                                     child: Column(
                                       children: [
-                                        Text('Target 2'),
+                                        const Text('Target 2'),
                                         Text(
                                           performanceDetailList[index]
                                                   ['target_2']
                                               .toString(),
-                                          style: TextStyle(fontSize: 12),
+                                          style: const TextStyle(fontSize: 12),
                                         ),
                                       ],
                                     ),
@@ -215,22 +215,47 @@ class _PerformanceState extends State<Performance> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const Text(
-                                    'Duration  :  ',
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(
-                                    width:
+                                  Row(
+                                    children: [
+                                      const Text(
+                                        'StopLoss  :  ',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        width:
                                         MediaQuery.of(context).size.width * 0.6,
-                                    child: Text(
-                                      performanceDetailList[index]['duration']
-                                          .toString(),
-                                      style: TextStyle(
-                                          fontSize: 12, color: Colors.black54),
-                                    ),
+                                        child: Text(
+                                          performanceDetailList[index]['duration']
+                                              .toString(),
+                                          style: const TextStyle(
+                                              fontSize: 12, color: Colors.black54),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Text(
+                                        'Duration  :  ',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width * 0.6,
+                                        child: Text(
+                                          performanceDetailList[index]['duration']
+                                              .toString(),
+                                          style: const TextStyle(
+                                              fontSize: 12, color: Colors.black54),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
@@ -244,14 +269,14 @@ class _PerformanceState extends State<Performance> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 'Instrument  :  ',
                                 style: TextStyle(
                                     fontSize: 12, fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 performanceDetailList[index]['instrument'],
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 12, color: Colors.black54),
                               ),
                             ],
@@ -292,10 +317,10 @@ class _PerformanceState extends State<Performance> {
                                     horizontal: 16.0, vertical: 8),
                                 child: Column(
                                   children: [
-                                    Text('Entry'),
+                                    const Text('Entry'),
                                     Text(
                                       performanceDetailList[index]['entry'],
-                                      style: TextStyle(fontSize: 12),
+                                      style: const TextStyle(fontSize: 12),
                                     ),
                                   ],
                                 ),
@@ -311,10 +336,10 @@ class _PerformanceState extends State<Performance> {
                                     horizontal: 16.0, vertical: 8),
                                 child: Column(
                                   children: [
-                                    Text('Exit'),
+                                    const Text('Exit'),
                                     Text(
                                       performanceDetailList[index]['exit'],
-                                      style: TextStyle(fontSize: 12),
+                                      style: const TextStyle(fontSize: 12),
                                     ),
                                   ],
                                 ),
@@ -330,11 +355,11 @@ class _PerformanceState extends State<Performance> {
                                     horizontal: 16.0, vertical: 8),
                                 child: Column(
                                   children: [
-                                    Text('Profit & Loss'),
+                                    const Text('Profit & Loss'),
                                     Text(
                                       performanceDetailList[index]
                                           ['profit_loss'],
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 12,
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold),
@@ -361,7 +386,7 @@ class _PerformanceState extends State<Performance> {
                                 width: MediaQuery.of(context).size.width * 0.6,
                                 child: Text(
                                   performanceDetailList[index]['disclaimer'],
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 12, color: Colors.black54),
                                 ),
                               ),
